@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36109.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarketTickerSimulator", "StockMarketTickerSimulator\StockMarketTickerSimulator.csproj", "{A14D9A2A-849B-491A-B03E-AF71318D68CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGenerationEngine", "DataGenerationEngine\DataGenerationEngine.csproj", "{D2C133E3-D51D-4B51-B978-4AA8C78597CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A14D9A2A-849B-491A-B03E-AF71318D68CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A14D9A2A-849B-491A-B03E-AF71318D68CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A14D9A2A-849B-491A-B03E-AF71318D68CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2C133E3-D51D-4B51-B978-4AA8C78597CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2C133E3-D51D-4B51-B978-4AA8C78597CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2C133E3-D51D-4B51-B978-4AA8C78597CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2C133E3-D51D-4B51-B978-4AA8C78597CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
