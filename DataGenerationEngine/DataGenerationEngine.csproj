@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StockPriceUpdator.cs" />
     <Compile Include="UniqueStockSymbols.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
