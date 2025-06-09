@@ -10,12 +10,13 @@ namespace DataGenerationEngine
 {
 	public class UniqueStockSymbols
 	{
-		ConcurrentDictionary<string, double> stockSymbols = new ConcurrentDictionary<string, double>();
+		public static ConcurrentDictionary<string, double> stockSymbols = new ConcurrentDictionary<string, double>();
 		Random randomTicker = new Random();
 
 
-		public void generateUniqueStockSymbols()
+		public void GenerateUniqueStockSymbols()
 		{
+			Console.WriteLine("Generating UniqueStock Symbols");
 			while ( stockSymbols.Count < 100 )
 			{
 				StringBuilder stockSymbol = new StringBuilder();
@@ -27,10 +28,15 @@ namespace DataGenerationEngine
 					char letter = ( char )randomTicker.Next( 'A', 'Z' + 1 );
 					stockSymbol.Append( letter );
 				}
-
 				stockSymbols.TryAdd( stockSymbol.ToString(), stockSymbolValue );
 			}
 
+			foreach (double stockValue in stockSymbols.Values)
+			{ 
+				Console.WriteLine($"initial generated stockValue = {stockValue}");
+			}	
+
+			Console.WriteLine("Generated UniqueStock Symbols");
 		}
 
 	}

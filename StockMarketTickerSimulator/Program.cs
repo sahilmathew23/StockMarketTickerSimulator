@@ -2,16 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DataGenerationEngine;
 namespace StockMarketTickerSimulator
 {
 	internal class Program
 	{
-		static void Main( string[] args )
+		static async Task Main( string[] args )
 		{
 			UniqueStockSymbols uniqueStockSymbols = new UniqueStockSymbols();
-			uniqueStockSymbols.generateUniqueStockSymbols();
+			uniqueStockSymbols.GenerateUniqueStockSymbols();
+
+			StockPriceUpdator stockPriceUpdator = new StockPriceUpdator();
+
+			using ( var cts = new CancellationTokenSource( TimeSpan.FromSeconds( 30 ) ) )
+			{
+				await stockPriceUpdator.StartStockPriceUpdation( cts.Token );
+			}
+
+			Console.ReadKey();
 		}
+
+		
 	}
 }
