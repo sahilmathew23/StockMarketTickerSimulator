@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataGenerationEngine;
 using StockTicker.Eventing;
+using Logger;
+using System.Reflection;
 namespace PriceUpdateConsumer
 {
     public class StockPriceConsumer
@@ -16,7 +18,7 @@ namespace PriceUpdateConsumer
 
         public void GetNotification(object sender, PriceChangedEventArgs priceChangedEventArgs)
         {
-            Console.WriteLine( $"StockPriceChanged!!!\n {priceChangedEventArgs}" );
+            Log.WriteLog( $"{MethodBase.GetCurrentMethod()} StockPriceChanged!!!\n {priceChangedEventArgs}" );
         }
     }
 }
