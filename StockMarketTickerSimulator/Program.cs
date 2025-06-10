@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DataGenerationEngine;
+using StockTicker.Eventing;
+using PriceUpdateConsumer;
 namespace StockMarketTickerSimulator
 {
 	internal class Program
@@ -15,6 +17,9 @@ namespace StockMarketTickerSimulator
 			uniqueStockSymbols.GenerateUniqueStockSymbols();
 
 			StockPriceUpdator stockPriceUpdator = new StockPriceUpdator();
+			StockPriceConsumer stockPriceConsumer = new StockPriceConsumer();
+			stockPriceConsumer.Subscribe(stockPriceUpdator);
+
 
 			using ( var cts = new CancellationTokenSource( TimeSpan.FromSeconds( 30 ) ) )
 			{

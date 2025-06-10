@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36109.1 d17.14
+VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarketTickerSimulator", "StockMarketTickerSimulator\StockMarketTickerSimulator.csproj", "{A14D9A2A-849B-491A-B03E-AF71318D68CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGenerationEngine", "DataGenerationEngine\DataGenerationEngine.csproj", "{D2C133E3-D51D-4B51-B978-4AA8C78597CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTicker.Eventing", "PriceUpdateBroadcastingSystem\StockTicker.Eventing.csproj", "{F1F2FD69-B43C-4331-86B5-D81DC63199D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceUpdateConsumer", "PriceUpdateConsumer\PriceUpdateConsumer.csproj", "{7EAEB321-0FCA-44E8-B9C8-09F13453055B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{D2C133E3-D51D-4B51-B978-4AA8C78597CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C133E3-D51D-4B51-B978-4AA8C78597CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C133E3-D51D-4B51-B978-4AA8C78597CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1F2FD69-B43C-4331-86B5-D81DC63199D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1F2FD69-B43C-4331-86B5-D81DC63199D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1F2FD69-B43C-4331-86B5-D81DC63199D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1F2FD69-B43C-4331-86B5-D81DC63199D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

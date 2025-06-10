@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D2C133E3-D51D-4B51-B978-4AA8C78597CE}</ProjectGuid>
+    <ProjectGuid>{7EAEB321-0FCA-44E8-B9C8-09F13453055B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataGenerationEngine</RootNamespace>
-    <AssemblyName>DataGenerationEngine</AssemblyName>
+    <RootNamespace>PriceUpdateConsumer</RootNamespace>
+    <AssemblyName>PriceUpdateConsumer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StockPriceUpdator.cs" />
-    <Compile Include="UniqueStockSymbols.cs" />
+    <Compile Include="StockPriceConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataGenerationEngine\DataGenerationEngine.csproj">
+      <Project>{d2c133e3-d51d-4b51-b978-4aa8c78597ce}</Project>
+      <Name>DataGenerationEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PriceUpdateBroadcastingSystem\StockTicker.Eventing.csproj">
       <Project>{f1f2fd69-b43c-4331-86b5-d81dc63199d2}</Project>
       <Name>StockTicker.Eventing</Name>
