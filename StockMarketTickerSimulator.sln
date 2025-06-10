@@ -13,6 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceUpdateConsumer", "Pric
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		validations.txt = validations.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSubscriptionModule", "ClientSubscriptionModule\ClientSubscriptionModule.csproj", "{39D7E0C7-1898-4C4E-A0D3-59543E484AD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +46,10 @@ Global
 		{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39D7E0C7-1898-4C4E-A0D3-59543E484AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39D7E0C7-1898-4C4E-A0D3-59543E484AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39D7E0C7-1898-4C4E-A0D3-59543E484AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39D7E0C7-1898-4C4E-A0D3-59543E484AD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
