@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using StockTicker.Eventing;
 namespace DataGenerationEngine
 {
 	public class StockPriceUpdator
 	{
 		private static readonly ThreadLocal<Random> threadLocalRandom = new ThreadLocal<Random>( () => new Random() );
+		
+		public event EventHandler<PriceChangedEventArgs> PriceChanged;
 
-		public async Task StartStockPriceUpdation( CancellationToken cancellationToken)
+		public async Task StartStockPriceUpdation( CancellationToken cancellationToken )
 		{
+			Console.WriteLine( "Updating Stock Values" );
 			try 
 			{
 				int count = 1;
@@ -26,18 +30,25 @@ namespace DataGenerationEngine
 						{
 							double currentValue = UniqueStockSymbols.stockSymbols[ key ];
 							double newValue = currentValue + currentValue * (rndPriceChange.Next( -5, 6 ) / 100.0);
-							UniqueStockSymbols.stockSymbols.TryUpdate( key, newValue, currentValue );
+
+							
+							if ( UniqueStockSymbols.stockSymbols.TryUpdate( key, newValue, currentValue ) )
+							{
+								PriceChanged?.Invoke( this, new PriceChangedEventArgs { OldPrice = currentValue, NewPrice = newValue, Symbol = key, TimeStamp = DateTime.Now } );
+							}
 						}
 
 					}
 						, cancellationToken
 					);
 
+
 					foreach ( double stockValue in UniqueStockSymbols.stockSymbols.Values )
 					{
 						Console.WriteLine( $"iteration {count}, updated stockValue = {stockValue}" );
 
 					}
+					Console.WriteLine( $"Updated Stock Values for iteration = {count}\n" );
 
 					await Task.Delay( TimeSpan.FromSeconds( 10 ), cancellationToken );
 					count++;

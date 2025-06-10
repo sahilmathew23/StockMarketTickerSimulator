@@ -36,7 +36,7 @@ namespace DataGenerationEngine
 				Console.WriteLine($"initial generated stockValue = {stockValue}");
 			}	
 
-			Console.WriteLine("Generated UniqueStock Symbols");
+			Console.WriteLine("Generated UniqueStock Symbols\n");
 		}
 
 	}
