@@ -1,37 +1,75 @@
 ﻿using ClientSubscriptionModule;
 using DataGenerationEngine;
+using Logger;
 using StockTicker.Eventing;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
 namespace ClientSubscriptionModule
 {
-    public class ClientStockConsumer
-    {
-        public static ConcurrentDictionary<string, List<Client>> stockAndClientsMapping = new ConcurrentDictionary<string, List<Client>>();
+	public class ClientStockConsumer
+	{
+		public static ConcurrentDictionary<string, List<Client>> stockAndClientsMapping = new ConcurrentDictionary<string, List<Client>>();
+		public static ConcurrentDictionary<Client, List<string>> clientsAndStockMapping = new ConcurrentDictionary<Client, List<string>>();
+		public static ConcurrentDictionary<(string, string), CancellationTokenSource> timers = new ConcurrentDictionary<(string, string), CancellationTokenSource>();
+
 
 		public List<Client> clients = new List<Client>
 			{
 				new Client { ClientName = "Alpha Investments" },    // 0–19
-				new Client { ClientName = "Beta Capital" },          // 20–39
-				new Client { ClientName = "Gamma Ventures" },        // 30–49
-				new Client { ClientName = "Delta Traders" },         // 40–59
-				new Client { ClientName = "Epsilon Partners" },      // 50–69
-				new Client { ClientName = "Zeta Holdings" },         // 60–79
-				new Client { ClientName = "Eta Securities" },        // 70–89
-				new Client { ClientName = "Theta Corp" }             // 85–99
-			};
+                new Client { ClientName = "Beta Capital" },          // 20–39
+                new Client { ClientName = "Gamma Ventures" },        // 30–49
+                new Client { ClientName = "Delta Traders" },         // 40–59
+                new Client { ClientName = "Epsilon Partners" },      // 50–69
+                new Client { ClientName = "Zeta Holdings" },         // 60–79
+                new Client { ClientName = "Eta Securities" },        // 70–89
+                new Client { ClientName = "Theta Corp" }             // 85–99
+            };
+
+		public async void InitializeClientTaskForEachStock(StockPriceUpdator stockPriceUpdator)
+		{
+			foreach ( Client client in clientsAndStockMapping.Keys )
+			{
+				foreach ( string stockNames in clientsAndStockMapping[ client ] )
+				{
+					await Task.Run( () => 
+					{
+						stockPriceUpdator.PriceChanged += OnPriceChangedForClients;
+					} );
+				}
+			}
+		}
+
+		public void OnPriceChangedForClients( object sender, PriceChangedEventArgs e )
+		{
+			Task.Run( () =>
+			{
+				stockAndClientsMapping.TryGetValue( e.Symbol, out List<Client> client );
+				Log.WriteLog( $"Client Count = {client.Count} For Clients = {  String.Join(", " , client.Select(c => c.ClientName)) }\nStock {e.Symbol} changed from {e.OldPrice} to {e.NewPrice} at {e.TimeStamp}" );
+				//StartInactivityTimer( client, e.Symbol );
+			} );
+		}
+
+		private async void StartInactivityTimer( List<Client> clients, string symbol )
+		{
+			foreach(Client client in clients)
+			{
+				
+			}
+
+		}
+
 		public void InitializeStockClientMapping()
 		{
 			var stockNames = new List<string>( UniqueStockSymbols.stockSymbols.Keys );
-
-			
 
 			for ( int i = 0; i < stockNames.Count; i++ )
 			{
@@ -56,31 +94,31 @@ namespace ClientSubscriptionModule
 
 				stockAndClientsMapping.TryAdd( stockNames[ i ], assignedClients );
 			}
-
 		}
 
-		public void GetNotificationForClients( object sender, PriceChangedEventArgs priceChangedEventArgs )
+		public void InitializeClientStockMapping()
 		{
-
-			foreach ( string stockName in stockAndClientsMapping.Keys )
+			foreach ( Client client in clients )
 			{
-				if ( string.Equals( stockName, priceChangedEventArgs.Symbol ) )
+				clientsAndStockMapping.TryAdd( client, new List<string>() );	
+			}
+
+			foreach ( Client clientCS in clientsAndStockMapping.Keys )
+			{
+				foreach (string stockName in stockAndClientsMapping.Keys)
 				{
-					foreach ( Client client in stockAndClientsMapping[ stockName ] )
+					if ( stockAndClientsMapping[ stockName ].Contains( clientCS ) )
 					{
-						Console.WriteLine( $"{MethodBase.GetCurrentMethod()} StockPriceChanged!!! for \nClient = {client.ClientName} \nStockName = {stockName}\n\n\n" );
+						clientsAndStockMapping[ clientCS ].Add( stockName );
 					}
-					break;
 				}
 			}
 
-
-		}
-
-
-		public void Subscribe(StockPriceUpdator stockPriceUpdator)
-		{
-			stockPriceUpdator.PriceChanged += GetNotificationForClients;
+			foreach (Client client in clientsAndStockMapping.Keys)
+			{
+				Console.WriteLine($"ClientName = {client.ClientName}, StocksSubscribed = {string.Join(", ", clientsAndStockMapping[ client ] )}");
+			}
+			Console.WriteLine("\n");
 		}
 
 	}

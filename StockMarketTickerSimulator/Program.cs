@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using DataGenerationEngine;
 using StockTicker.Eventing;
-using PriceUpdateConsumer;
 using ClientSubscriptionModule;
 namespace StockMarketTickerSimulator
 {
@@ -19,15 +18,13 @@ namespace StockMarketTickerSimulator
 
 			ClientStockConsumer clientStockConsumer = new ClientStockConsumer();
 			clientStockConsumer.InitializeStockClientMapping();
+			clientStockConsumer.InitializeClientStockMapping();
 
 			StockPriceUpdator stockPriceUpdator = new StockPriceUpdator();
-			//StockPriceConsumer stockPriceConsumer = new StockPriceConsumer();
-			//stockPriceConsumer.Subscribe(stockPriceUpdator);
+			clientStockConsumer.InitializeClientTaskForEachStock( stockPriceUpdator);
 
-			clientStockConsumer.Subscribe( stockPriceUpdator );
-
-
-			using ( var cts = new CancellationTokenSource( TimeSpan.FromSeconds( 30 ) ) )
+			
+			using ( var cts = new CancellationTokenSource( TimeSpan.FromSeconds( 600 ) ) )
 			{
 				await stockPriceUpdator.StartStockPriceUpdation( cts.Token );
 			}
