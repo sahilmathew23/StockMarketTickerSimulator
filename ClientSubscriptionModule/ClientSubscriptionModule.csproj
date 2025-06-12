@@ -50,6 +50,10 @@
       <Project>{D2C133E3-D51D-4B51-B978-4AA8C78597CE}</Project>
       <Name>DataGenerationEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{eca4c516-c267-4eee-91e4-60e7e462a5bf}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PriceUpdateBroadcastingSystem\StockTicker.Eventing.csproj">
       <Project>{F1F2FD69-B43C-4331-86B5-D81DC63199D2}</Project>
       <Name>StockTicker.Eventing</Name>

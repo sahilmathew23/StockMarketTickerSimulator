@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using StockTicker.Eventing;
+using Logger;
 namespace DataGenerationEngine
 {
 	public class StockPriceUpdator
@@ -25,8 +26,9 @@ namespace DataGenerationEngine
 				{
 					
 					var rndPriceChange = threadLocalRandom.Value;
+					var rndStockUpdateTimeChange = threadLocalRandom.Value;
 					await Task.Run
-					( () =>
+					( async () =>
 					{
 						foreach ( string key in UniqueStockSymbols.stockSymbols.Keys.ToList() )
 						{
@@ -39,6 +41,7 @@ namespace DataGenerationEngine
 
 								UpdatedStockSymbolNamesQueue.Append(key);
 								PriceChanged?.Invoke( this, new PriceChangedEventArgs { OldPrice = currentValue, NewPrice = newValue, Symbol = key, TimeStamp = DateTime.Now } );
+								await Task.Delay( TimeSpan.FromSeconds( rndStockUpdateTimeChange.Next( 0, 7 ) ), cancellationToken );
 
 							}
 						}
@@ -50,7 +53,7 @@ namespace DataGenerationEngine
 
 					Console.WriteLine( $"Updated Stock Values for iteration = {count}\n" );
 
-					await Task.Delay( TimeSpan.FromSeconds( 10 ), cancellationToken );
+
 					count++;
 				}
 

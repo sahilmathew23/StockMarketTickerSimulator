@@ -62,10 +62,6 @@
       <Project>{f1f2fd69-b43c-4331-86b5-d81dc63199d2}</Project>
       <Name>StockTicker.Eventing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PriceUpdateConsumer\PriceUpdateConsumer.csproj">
-      <Project>{7eaeb321-0fca-44e8-b9c8-09f13453055b}</Project>
-      <Name>PriceUpdateConsumer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

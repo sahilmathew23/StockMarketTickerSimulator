@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGenerationEngine", "Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTicker.Eventing", "PriceUpdateBroadcastingSystem\StockTicker.Eventing.csproj", "{F1F2FD69-B43C-4331-86B5-D81DC63199D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceUpdateConsumer", "PriceUpdateConsumer\PriceUpdateConsumer.csproj", "{7EAEB321-0FCA-44E8-B9C8-09F13453055B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
@@ -38,10 +36,6 @@ Global
 		{F1F2FD69-B43C-4331-86B5-D81DC63199D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1F2FD69-B43C-4331-86B5-D81DC63199D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1F2FD69-B43C-4331-86B5-D81DC63199D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EAEB321-0FCA-44E8-B9C8-09F13453055B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECA4C516-C267-4EEE-91E4-60E7E462A5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{eca4c516-c267-4eee-91e4-60e7e462a5bf}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PriceUpdateBroadcastingSystem\StockTicker.Eventing.csproj">
       <Project>{f1f2fd69-b43c-4331-86b5-d81dc63199d2}</Project>
       <Name>StockTicker.Eventing</Name>
