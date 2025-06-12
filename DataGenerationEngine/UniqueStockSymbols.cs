@@ -14,9 +14,9 @@ namespace DataGenerationEngine
 		Random randomTicker = new Random();
 
 
-		public void GenerateUniqueStockSymbols()
+		public void InitializeUniqueStockSymbols()
 		{
-			Console.WriteLine("Generating UniqueStock Symbols");
+			Console.WriteLine("Initializing UniqueStock Symbols");
 			while ( stockSymbols.Count < 100 )
 			{
 				StringBuilder stockSymbol = new StringBuilder();
@@ -36,8 +36,9 @@ namespace DataGenerationEngine
 				Console.WriteLine($"initial generated stockValue = {stockValue}");
 			}	
 
-			Console.WriteLine("Generated UniqueStock Symbols\n");
+			Console.WriteLine("Initialized UniqueStock Symbols\n");                  
 		}
+
 
 	}
 }

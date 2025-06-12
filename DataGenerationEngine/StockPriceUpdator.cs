@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace DataGenerationEngine
 		private static readonly ThreadLocal<Random> threadLocalRandom = new ThreadLocal<Random>( () => new Random() );
 		
 		public event EventHandler<PriceChangedEventArgs> PriceChanged;
+		public ConcurrentQueue<string> UpdatedStockSymbolNamesQueue = new ConcurrentQueue<string>();
 
 		public async Task StartStockPriceUpdation( CancellationToken cancellationToken )
 		{
@@ -34,7 +36,10 @@ namespace DataGenerationEngine
 							
 							if ( UniqueStockSymbols.stockSymbols.TryUpdate( key, newValue, currentValue ) )
 							{
+
+								UpdatedStockSymbolNamesQueue.Append(key);
 								PriceChanged?.Invoke( this, new PriceChangedEventArgs { OldPrice = currentValue, NewPrice = newValue, Symbol = key, TimeStamp = DateTime.Now } );
+
 							}
 						}
 
@@ -43,11 +48,6 @@ namespace DataGenerationEngine
 					);
 
 
-					foreach ( double stockValue in UniqueStockSymbols.stockSymbols.Values )
-					{
-						Console.WriteLine( $"iteration {count}, updated stockValue = {stockValue}" );
-
-					}
 					Console.WriteLine( $"Updated Stock Values for iteration = {count}\n" );
 
 					await Task.Delay( TimeSpan.FromSeconds( 10 ), cancellationToken );

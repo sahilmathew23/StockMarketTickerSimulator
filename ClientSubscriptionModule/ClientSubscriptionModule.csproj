@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A14D9A2A-849B-491A-B03E-AF71318D68CE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>StockMarketTickerSimulator</RootNamespace>
-    <AssemblyName>StockMarketTickerSimulator</AssemblyName>
+    <ProjectGuid>{39D7E0C7-1898-4C4E-A0D3-59543E484AD1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClientSubscriptionModule</RootNamespace>
+    <AssemblyName>ClientSubscriptionModule</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,28 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="ClientStockConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClientSubscriptionModule\ClientSubscriptionModule.csproj">
-      <Project>{39d7e0c7-1898-4c4e-a0d3-59543e484ad1}</Project>
-      <Name>ClientSubscriptionModule</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataGenerationEngine\DataGenerationEngine.csproj">
-      <Project>{d2c133e3-d51d-4b51-b978-4aa8c78597ce}</Project>
+      <Project>{D2C133E3-D51D-4B51-B978-4AA8C78597CE}</Project>
       <Name>DataGenerationEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\PriceUpdateBroadcastingSystem\StockTicker.Eventing.csproj">
-      <Project>{f1f2fd69-b43c-4331-86b5-d81dc63199d2}</Project>
+      <Project>{F1F2FD69-B43C-4331-86B5-D81DC63199D2}</Project>
       <Name>StockTicker.Eventing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PriceUpdateConsumer\PriceUpdateConsumer.csproj">
-      <Project>{7eaeb321-0fca-44e8-b9c8-09f13453055b}</Project>
-      <Name>PriceUpdateConsumer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
